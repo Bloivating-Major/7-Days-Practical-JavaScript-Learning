@@ -39,3 +39,37 @@
             - we will use some on positions to find our is our match true or not
             - so that we can remove duplicates
             - randomNumber function takes size and returns a number based on it!
+
+2. We need to build left click on tiles
+    - 1. Reaveal Tiles
+3. Right Click on tiles.
+    - 1. Mark Tiles
+
+- we can say add event listener for click to perform left click
+- we can say add event listener for contextmenu to perform right click
+- when we will do right click but we will preventDefault behaviou
+
+- so now in right click we will use a function markTile(tile)
+    - What is marktile function?
+        - we have to check first if the tile that we are marking is eligible or not to mark?
+        - so how is a tile eligible to mark?
+            - it should be hidden
+            - and it should not be a mine
+            if both of this condition are satisfied then we will mark the tile
+        - now we also have to check that are we marking our tile for 1st time or are we unmarking it?
+            - so if our tile status is marked then we will make it hidden again
+            - if not then we will mark it!
+        - also what we will be doing is changing the minesLeft values when we mark the tile how we will do it?
+            - we can create a function for that listMinesLeft()
+            - and what we can do is use a reduce function to calculate the count that actually how many tiles are marked and hidden?
+            ```js 
+                function listMinesLeft(){
+                    const markedTilesCount = board.reduce((count, row) =>{
+                        return count + row.filter((tile)=> tile.status === TILE_STATUSES.MARKED ).length
+                    }, 0)
+
+                    minesLeftText.textContent = NUMBER_OF_MINES - markedTilesCount;
+                }
+            ```
+            - this is how we will count the number of tiles marked or unmarked
+
