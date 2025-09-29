@@ -73,3 +73,12 @@
             ```
             - this is how we will count the number of tiles marked or unmarked
 
+- Reveal Tile Function
+    - So how do you reveal a tile?
+        - You can only reveal a tile if it is marked hidden!
+        - so if a tile is not marked hidden you cannot reveal it!
+    
+    - If is it a mine?
+        - then we can set status of a tile to mine
+    
+    - and if it is not a mine then it is a number

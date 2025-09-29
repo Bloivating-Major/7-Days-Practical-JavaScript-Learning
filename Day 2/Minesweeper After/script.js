@@ -1,7 +1,7 @@
-import { TILE_STATUSES, markTile, createBoard } from "./minesweeper.js";
+import { TILE_STATUSES, markTile, createBoard, revealTile } from "./minesweeper.js";
 
 const BOARD_SIZE = 5;
-const NO_OF_MINES = 10;
+const NO_OF_MINES = 5;
 
 const board = createBoard(BOARD_SIZE, NO_OF_MINES);
 const boardElement = document.querySelector('.board');
@@ -12,7 +12,7 @@ board.forEach((row)=>{
     row.forEach((tile)=>{
         boardElement.append(tile.element);
         tile.element.addEventListener("click", ()=>{
-            console.log("Left Click");
+            revealTile(board, tile);
         })
         tile.element.addEventListener("contextmenu", (e)=>{
             e.preventDefault();
