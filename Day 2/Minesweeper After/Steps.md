@@ -29,4 +29,13 @@
         - Then you can iterate through board element and then add those mines on the board.
     - Creating and marking status is not an easy thing so what we can do is create getter and setter on the object that we will be using as our board tile.
     - Next thing to do is populate our board with mines.
-
+        - So we will add a property on our tile as mine which be set to true or false based on it is a mine or not!
+        - What we will do is create minePositions and in that we will use a function to create mines using boardSize and numberOfMines as getMinePositions so minePositions will give us Array of values in the end which will be x and y coordinates for our mines.
+        - function getMines
+            - here we will return an array of numbers as mines
+            we will create positions as objects which has x and y
+            - now how we will generate those x and y coordinates is through a randomNumber function
+            - also we will check if our positions array has duplicate positions or not?
+            - we will use some on positions to find our is our match true or not
+            - so that we can remove duplicates
+            - randomNumber function takes size and returns a number based on it!
