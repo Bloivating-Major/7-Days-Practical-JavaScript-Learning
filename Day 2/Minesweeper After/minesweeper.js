@@ -65,31 +65,49 @@ export function revealTile(board, tile) {
   const adjacentTiles = nearByTiles(board, tile);
 
   // Here we find out how many mines are present in that adjacent area
-  const mines = adjacentTiles.filter(t => t.mine);
-
-  console.log(mines);
+  const mines = adjacentTiles.filter((t) => t.mine);
 
   // Now what we can do is if we don't have any mine then we will do something
-  if(mines.length === 0){
+  if (mines.length === 0) {
     adjacentTiles.forEach(revealTile.bind(null, board));
-  }else{
+  } else {
     tile.element.textContent = mines.length;
   }
-
 }
 
 // function to find adjacent tiles
-function nearByTiles(board, {x, y}) {
+function nearByTiles(board, { x, y }) {
   const tiles = [];
 
   for (let xOffset = -1; xOffset <= 1; xOffset++) {
     for (let yOffset = -1; yOffset <= 1; yOffset++) {
       const tile = board[x + xOffset]?.[y + yOffset];
-      if(tile) tiles.push(tile);
+      if (tile) tiles.push(tile);
     }
   }
 
   return tiles;
+}
+
+export function checkWin(board) {
+  return board.every((row) => {
+    return row.every((tile) => {
+      return (
+        tile.status === TILE_STATUSES.NUMBER ||
+        (tile.mine &&
+          (tile.status === TILE_STATUSES.HIDDEN ||
+            tile.status === TILE_STATUSES.MARKED))
+      );
+    });
+  });
+}
+
+export function checkLose(board) {
+  return board.some((row) => {
+    return row.some((tile) => {
+      return tile.status === TILE_STATUSES.MINE;
+    });
+  });
 }
 
 function getMinePositions(boardSize, numberOfMines) {
